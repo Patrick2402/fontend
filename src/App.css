@@ -1,38 +1,243 @@
-.App {
-  text-align: center;
-}
-
-.App-logo {
-  height: 40vmin;
-  pointer-events: none;
-}
-
-@media (prefers-reduced-motion: no-preference) {
-  .App-logo {
-    animation: App-logo-spin infinite 20s linear;
-  }
-}
-
-.App-header {
-  background-color: #282c34;
-  min-height: 100vh;
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  justify-content: center;
-  font-size: calc(10px + 2vmin);
+.root-layout{
+  width: 100%;
+  height: calc(100vh-20px);
   color: white;
 }
 
-.App-link {
-  color: #61dafb;
+.root-layout header{
+  display: flex;
+  justify-content: end;
+  flex-direction: row;
+  font-size: 2.5rem;
+  min-height: 10vh;
 }
 
-@keyframes App-logo-spin {
-  from {
-    transform: rotate(0deg);
+.root-layout header nav {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+.root-layout header nav a{
+  text-decoration: unset;
+  color: white;
+  padding: 10px;
+}
+@media (width < 600px){
+  .root-layout header nav{
+    flex-direction: column;
   }
-  to {
-    transform: rotate(360deg);
-  }
+}
+.root-layout header nav a.active{
+  background-color: #002233;
+  border-radius: 9px;
+}
+main { 
+  margin-top: 4em;
+  height: calc(68vh);
+}
+
+.error {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  flex-direction: column;
+  margin-top: 200px;
+  color: white;
+}
+.error a{
+  text-decoration: unset;
+  color: white;
+  font-weight: 400;
+}
+
+
+.home{
+  display: flex;
+  flex-direction: row;
+  padding: 30px;
+  
+}
+.home .homer{
+  width: 50%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  height: 30em;
+}
+.home .homel{
+  width: 50%;
+}
+
+.signup{
+  height: 500px;
+}
+
+.login{
+  display: flex;
+  align-items: center;
+  flex-direction: column;
+  justify-content: center;
+  width: 100%;
+
+}
+Form{
+  padding: 5%;
+  backdrop-filter: blur(1px);
+  background-image: url('./assets/circle.png');
+}
+Form:before {
+  content: "";
+  position: absolute;
+  width : 100%;
+  height: 100%;
+  background: inherit;
+  z-index: -1;
+  filter        : blur(23px);
+  -moz-filter   : blur(10px);
+  -webkit-filter: blur(10px);
+  -o-filter     : blur(10px);
+  transition        : all 2s linear;
+  -moz-transition   : all 2s linear;
+  -webkit-transition: all 2s linear;
+  -o-transition     : all 2s linear;
+}
+Form label{
+  display: flex;
+  flex-direction: column;
+  gap: 10px 10px;
+  font-size: 2rem;
+  margin-top: 10px;
+}
+Form label input {
+  outline: none;
+  width: 10em;
+  font-size: 2rem;
+  padding: 3px;
+  opacity: 0.9;
+}
+
+Form button{
+  font-size: 2rem;
+  font-weight: 400;
+  padding: 5px;
+  background-color: #002233;
+  border: 0;
+  color: white;
+  transition: 0.4s all ease;
+}
+
+form button:hover{
+  cursor: pointer;
+  background-color: #014567;
+}
+
+.signup{
+  display: flex;
+  align-items: center;
+  flex-direction: column;
+  justify-content: center;
+  width: 100%;
+}
+
+.signup Form label{
+  display: flex;
+  flex-direction: column;
+  gap: 5px 5px;
+  font-size: 2rem;
+  margin-top: 20px;
+  filter: blur(0);
+}
+
+.timer {
+  width: 100%;
+}
+
+.timer .animation{
+  width: 400px;
+  height: 400px;
+}
+iframe{
+  border: none;
+  width: 80%;
+  height: 80%;
+}
+
+
+.timer{
+  display: flex;
+  flex-direction: column;
+  width: 100%;
+}
+
+.timer .scramble {
+  width: 100%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  font-size: 2em;
+  font-weight: 400;
+  height: 60px;
+
+
+}
+.timer .mains{
+  display: flex;
+  flex-direction: row;
+}
+.timer .left{
+  width: 25%;
+  height: 70vh;
+  display: grid;
+  grid-template-columns: auto auto auto;
+  grid-auto-rows: 40px;
+  gap: 5px 5px;
+  overflow: scroll;
+
+}
+.timer .center{
+  width: 45%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  background-position: center;
+  background-size: cover;
+}
+.timer .right{
+  width:35%;
+
+}
+.little-time{
+  padding: 5px;
+}
+.timer .mains .center span{
+  font-size: 4rem;
+}
+
+.right .delete-times {
+  border-radius: 9px;
+  border: 3px solid white;
+  padding: 5px;
+  transition: 0.5s all ease;
+  width: 99px;
+}
+.right .delete-times:hover{
+  cursor: pointer;
+  background-color: #002233;
+
+}
+.database{
+  display: flex;
+  flex-direction: wrap;
+  gap:10px 10px;
+  flex-wrap: wrap;
+  overflow: scroll;
+  height: 90vh;
+
+}
+.users{
+  border: 2px white solid;
+  padding: 10px;
+  display: flex;
+  flex-direction: column;
+  border-radius: 9px;
 }

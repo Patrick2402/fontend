@@ -87,10 +87,55 @@ export default function Timer() {
         </div>
     ))
 
+
+    const [average, setaverage] = useState(0.00);
+    const [best, setbest] = useState(null);
+    const handleaverageClick = () => {
+        if (times.length === 0) {
+            setbest(null)
+            setaverage(null)
+        }
+        let sum = 0;
+        let arr = [];
+        if (times.length >= 5) {
+            for (let i = times.length - 1; i > times.length - 6; i--) {
+                arr.push(times[i]);
+            }
+            arr.sort(); arr.pop(); arr.shift();
+
+            for (let i = 0; i < arr.length; i++) sum += arr[i];
+            setaverage((sum / 3).toFixed(2));
+        }
+    }
+    const thebesttime = () => {
+        if (times.length === 1) setbest(times[0])
+        for (let i = 0; i < times.length; i++) {
+            if (times[i] < best) setbest(times[i])
+        }
+    }
+    useEffect(() => {
+        handleaverageClick()
+        thebesttime()
+    }, [times])
+
     const handleDelete = () => {
         setTimes([])
     }
 
+    const [results,setResults] = useState('')
+    const handleCheck = async (e) => {
+        e.preventDefault();
+        const avg = (average / 10).toFixed(0);
+        console.log(avg)
+        const res = await fetch('/api/timerstats', {
+            method: 'POST',
+            body: JSON.stringify({ avg: avg }),
+            headers: { 'Content-Type': 'application/json' },
+        });
+        const json = await res.json();
+        setResults(json);
+        console.log(results)
+    }
 
     return (
         <div className="timer">
@@ -100,8 +145,15 @@ export default function Timer() {
                 <div className="center">{!minutes ? <span>{seconds}.{milliseconds}</span> : <span>{minutes}:{seconds}.{milliseconds}</span>}
                 </div>
                 <div className="right">
-                    <h3 className="delete-times" onClick={handleDelete}>Delete times</h3>
-                    <Stats times={times} />
+                    <div className="btnstack">
+                        <h3 className="delete-times" onClick={handleDelete}>Delete times</h3>
+                        <h3 className="delete-times" onClick={handleCheck}>Check your time</h3>
+                    </div>
+                    <div className="stats">
+                        <h1>Statistics</h1>
+                        <p>Ao5: {Math.floor((average % 60000) / 1000)}.{Math.floor((average % 1000) / 10)}</p>
+                        <p>Best: {Math.floor((best % 60000) / 1000)}.{Math.floor((best % 1000) / 10)}</p>
+                    </div>
                 </div>
             </div>
 

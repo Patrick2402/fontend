@@ -184,6 +184,9 @@ iframe{
   display: flex;
   flex-direction: row;
 }
+.timer .left::-webkit-scrollbar{
+  display: none;
+}
 .timer .left{
   width: 25%;
   height: 70vh;
@@ -192,7 +195,6 @@ iframe{
   grid-auto-rows: 40px;
   gap: 5px 5px;
   overflow: scroll;
-
 }
 .timer .center{
   width: 45%;
@@ -225,14 +227,22 @@ iframe{
   background-color: #002233;
 
 }
+.database::-webkit-scrollbar{
+  display: none;
+}
 .database{
   display: flex;
-  flex-direction: wrap;
-  gap:10px 10px;
-  flex-wrap: wrap;
   overflow: scroll;
-  height: 90vh;
+  justify-content: space-evenly;
+  height: 80vh;
+  
 
+}
+body::-webkit-scrollbar {
+  width: 0.2em;
+}
+body::-webkit-scrollbar-thumb {
+  background-color: #F5F5F5;
 }
 .users{
   border: 2px white solid;
@@ -240,4 +250,92 @@ iframe{
   display: flex;
   flex-direction: column;
   border-radius: 9px;
+
+}
+
+.database .wcaid{
+  height:10rem;
+  display: flex;
+  justify-content: start;
+  flex-direction: column;
+  align-items: start;
+  gap: 1rem;
+  padding-left: 2em;
+}
+.database .wcaid .btn{
+  border: none;
+  outline: none;
+  background-color: unset;
+  border: 2px solid white;
+  padding: 0.7rem;
+  border-radius: 9px;
+  font-weight: 400;
+  color: white;
+}
+.database .wcaid span{ 
+ font-weight: 400;
+ font-size:2rem;
+}
+
+.database .wcaid .wca {
+  outline: none;
+  width: 200px;
+  background-color: unset;
+  color: white;
+  font-weight: bold;
+  border: none;
+  font-size: 1.6rem;
+  border-bottom: 1px solid white;
+}
+
+.database .results {
+  width: 50%;
+}
+.head {
+  display: flex;
+  flex-wrap: nowrap;
+  justify-content: space-between;
+  align-items: center;
+    margin: 10px 0;
+
+}
+.head h1::after{
+  width: 10px;
+  height: 10px;
+  background-color: red;
+  content: " ";
+  display: inline-block;
+  margin: 10px;
+}
+
+.head h1, .head p {
+  margin: 0;
+  padding: 0;
+}
+
+
+table {
+  border-collapse: collapse;
+  width: 100%;
+}
+
+th, td {
+  border: 0.3px solid #dddddd;
+  text-align: left;
+  padding: 8px;
+  
+}
+
+th {
+  background-color: unset;
+}
+
+tr:nth-child(even) {
+  background-color: #000000;
+}
+
+.btnstack{
+  display: flex;
+  flex-direction: row;
+  gap: 10px;
 }

@@ -101,10 +101,9 @@ export default function Timer() {
             for (let i = times.length - 1; i > times.length - 6; i--) {
                 arr.push(times[i]);
             }
-            arr.sort(); arr.pop(); arr.shift();
-
+            // arr.sort(); arr.pop(); arr.shift();
             for (let i = 0; i < arr.length; i++) sum += arr[i];
-            setaverage((sum / 3).toFixed(2));
+            setaverage((sum / 5).toFixed(2));
         }
     }
     const thebesttime = () => {
@@ -120,13 +119,13 @@ export default function Timer() {
 
     const handleDelete = () => {
         setTimes([])
+        setResults('')
     }
 
-    const [results,setResults] = useState('')
-    const handleCheck = async (e) => {
-        e.preventDefault();
+    const [results, setResults] = useState('')
+ 
+    const fun = async () => {
         const avg = (average / 10).toFixed(0);
-        console.log(avg)
         const res = await fetch('/api/timerstats', {
             method: 'POST',
             body: JSON.stringify({ avg: avg }),
@@ -136,6 +135,11 @@ export default function Timer() {
         setResults(json);
         console.log(results)
     }
+    useEffect(() => {
+        if (times.length > 4) {
+            fun()
+        }
+    }, [average])
 
     return (
         <div className="timer">
@@ -147,13 +151,14 @@ export default function Timer() {
                 <div className="right">
                     <div className="btnstack">
                         <h3 className="delete-times" onClick={handleDelete}>Delete times</h3>
-                        <h3 className="delete-times" onClick={handleCheck}>Check your time</h3>
                     </div>
                     <div className="stats">
                         <h1>Statistics</h1>
                         <p>Ao5: {Math.floor((average % 60000) / 1000)}.{Math.floor((average % 1000) / 10)}</p>
                         <p>Best: {Math.floor((best % 60000) / 1000)}.{Math.floor((best % 1000) / 10)}</p>
+                        {results !== '' ? <p>World Avg rank position: {results[0].position}</p> : <p>World Avg Rank position: DNF</p>}
                     </div>
+
                 </div>
             </div>
 

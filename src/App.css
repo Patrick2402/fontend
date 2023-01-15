@@ -235,23 +235,18 @@ iframe{
   overflow: scroll;
   justify-content: space-evenly;
   height: 80vh;
-  
+}
+@media (width < 900px){
+  .database{
+    flex-direction: column;
+    width: 100%;
+  }
+  .database .results{
+    width: 100%;
+    justify-content: center;
+  }
+}
 
-}
-body::-webkit-scrollbar {
-  width: 0.2em;
-}
-body::-webkit-scrollbar-thumb {
-  background-color: #F5F5F5;
-}
-.users{
-  border: 2px white solid;
-  padding: 10px;
-  display: flex;
-  flex-direction: column;
-  border-radius: 9px;
-
-}
 
 .database .wcaid{
   height:10rem;

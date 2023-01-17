@@ -125,8 +125,10 @@ export default function Timer() {
 
     const [results, setResults] = useState('')
     const [single, setSingle] = useState('')
+    const [obojetnie, setObojetnie] = useState(null)
 
- 
+
+
     const fun = async () => {
         const avg = (average / 10).toFixed(0);
         const res = await fetch('/api/timerstats', {
@@ -139,7 +141,7 @@ export default function Timer() {
     }
 
     const fun_two = async () => {
-        const sin = (time/10).toFixed(0);
+        const sin = (time / 10).toFixed(0);
 
         const res = await fetch('/api/singleranks', {
             method: 'POST',
@@ -148,19 +150,31 @@ export default function Timer() {
         });
         const json = await res.json();
         setSingle(json);
-        
+
+    }
+    const fun_three = async () => {
+        const avg = (average / 10).toFixed(0);
+        const res = await fetch('/api/timerstats_two', {
+            method: 'POST',
+            body: JSON.stringify({ avg: avg }),
+            headers: { 'Content-Type': 'application/json' },
+        });
+        const json = await res.json();
+        setObojetnie(json);
+        console.log(json)
     }
 
     useEffect(() => {
         if (times.length > 4) {
             fun()
+            fun_three()
         }
     }, [average])
 
 
     useEffect(() => {
-        if(times.length > 0) fun_two()
-    },[times])
+        if (times.length > 0) fun_two()
+    }, [times])
 
     return (
         <div className="timer">
@@ -179,7 +193,24 @@ export default function Timer() {
                         <p>Best: {Math.floor((best % 60000) / 1000)}.{Math.floor((best % 1000) / 10)}</p>
                         {results !== '' ? <p>World Avg rank position: {results[0].position}</p> : <p>World Avg Rank position: DNF</p>}
                         {single !== '' ? <p>World Single rank position:{single[0].singlepos} </p> : <p>World Single Rank position: DNF</p>}
-
+                        {obojetnie && <div className='results'>
+                            <table>
+                            <tbody>
+                                <tr>
+                                    <th>Competition</th>
+                                    <th>Year</th>
+                                    <th>Who would you beat</th>
+                                </tr>
+                                {obojetnie[0].map((res, index) => (
+                                    <tr key={index}>
+                                        <td>{res.name}</td>
+                                        <td>{res.year}</td>
+                                        <td>{res.personName}</td>
+                                    </tr>
+                                ))}
+                        </tbody>
+                            </table>
+                        </div>}
                     </div>
 
                 </div>

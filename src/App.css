@@ -379,7 +379,12 @@ tr:nth-child(even) {
   padding: 1rem;
   border-radius: 9px;
 }
-
+.poem{
+  text-align: center;
+}
+.homel h1{
+  text-align: center;
+}
 .winable{
   width: 80%;
   display: flex;

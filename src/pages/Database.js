@@ -52,7 +52,6 @@ export default function Database() {
             <th>CountryRank</th>
         </tr>
       {results.map((res,index) => (
-       
           <tr>
             <td>{res.eventId}</td>
             <td>{Math.floor(res.best/6000)}:{(res.best%6000)/100}</td>

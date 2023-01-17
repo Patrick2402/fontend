@@ -9,7 +9,7 @@
   justify-content: end;
   flex-direction: row;
   font-size: 2.5rem;
-  min-height: 10vh;
+  min-height:2vh;
 }
 
 .root-layout header nav {
@@ -80,12 +80,12 @@ main {
   width: 100%;
 
 }
-Form{
+.login Form, .signup Form{
   padding: 5%;
   backdrop-filter: blur(1px);
   background-image: url('./assets/circle.png');
 }
-Form:before {
+.login Form:before, .signup Form:before {
   content: "";
   position: absolute;
   width : 100%;
@@ -101,14 +101,14 @@ Form:before {
   -webkit-transition: all 2s linear;
   -o-transition     : all 2s linear;
 }
-Form label{
+.login Form label, .signup Form label{
   display: flex;
   flex-direction: column;
   gap: 10px 10px;
   font-size: 2rem;
   margin-top: 10px;
 }
-Form label input {
+.login Form label input, .signup Form label input {
   outline: none;
   width: 10em;
   font-size: 2rem;
@@ -116,7 +116,7 @@ Form label input {
   opacity: 0.9;
 }
 
-Form button{
+.login Form button, .signup Form button{
   font-size: 2rem;
   font-weight: 400;
   padding: 5px;
@@ -126,7 +126,7 @@ Form button{
   transition: 0.4s all ease;
 }
 
-form button:hover{
+.login form button:hover, .signup form button:hover{
   cursor: pointer;
   background-color: #014567;
 }
@@ -217,24 +217,31 @@ iframe{
 
 .right .delete-times {
   border-radius: 9px;
-  border: 3px solid white;
+  margin-top: 2rem;
+  border: 2px solid white;
+  background-color: unset;
+  color: white;
+  font-size: bold;
   padding: 5px;
   transition: 0.5s all ease;
   width: 99px;
 }
 .right .delete-times:hover{
   cursor: pointer;
-  background-color: #002233;
+ 
 
 }
 .database::-webkit-scrollbar{
+  display: none;
+}
+.wyniki::-webkit-scrollbar{
   display: none;
 }
 .database{
   display: flex;
   overflow: scroll;
   justify-content: space-evenly;
-  height: 80vh;
+
 }
 @media (width < 900px){
   .database{
@@ -294,10 +301,12 @@ iframe{
     margin: 10px 0;
 
 }
+
 .head h1::after{
   width: 10px;
   height: 10px;
-  background-color: red;
+  background-color: ORANGE;
+  border-radius: 50%;
   content: " ";
   display: inline-block;
   margin: 10px;
@@ -310,19 +319,23 @@ iframe{
 
 
 table {
-  border-collapse: collapse;
+  border-collapse:collapse;
   width: 100%;
 }
 
 th, td {
-  border: 0.3px solid #dddddd;
+
   text-align: left;
   padding: 8px;
   
 }
 
+::selection{
+  background-color: orange;
+}
 th {
   background-color: unset;
+  width: 100px;
 }
 
 tr:nth-child(even) {
@@ -333,4 +346,88 @@ tr:nth-child(even) {
   display: flex;
   flex-direction: row;
   gap: 10px;
+}
+
+
+
+.databaselayout{
+  width: 100%;
+}
+.databaselayout main {
+  display: flex;
+  justify-content: center;
+}
+.databaselayout .subnav{
+  display: flex;
+  justify-content: end;
+  padding-right: 3rem;
+}
+.databaselayout .subnav nav{
+  display: flex;
+  justify-content: center;
+  gap: 1rem;
+
+}
+
+.databaselayout .subnav a{
+  color: white;
+  text-decoration: unset;
+  padding: 1rem;
+}
+.databaselayout .subnav a.active{
+  background-color: orange;
+  padding: 1rem;
+  border-radius: 9px;
+}
+
+.winable{
+  width: 80%;
+  display: flex;
+  justify-content: center;
+}
+.selection{
+  display: flex;
+  flex-direction: column;
+  gap: 0.5rem;
+}
+.selection select{
+  border-radius: 4px;
+  outline: none;
+  font-weight: 400;
+  background-color: unset;
+  border: none;
+  color: white;
+  border: 1px white solid;
+  padding: 0.2rem;
+}
+.selection select:focus{
+  background-color:#002233;
+}
+.selection select option{
+  border-radius: 7px;
+}
+.forms {
+  display: flex;
+  flex-direction: row;
+  gap: 1rem;
+}
+.forms label {
+  display: flex;
+  flex-direction: row;
+  gap: 1rem;
+}
+.forms label input{
+  background-color: unset;
+  color: white;
+  font-weight: bold;
+  border: 2px solid white;
+  border-radius: 4px;
+  font-size: 1rem;
+  padding: 0.5em;
+
+}
+.wyniki{
+  width: 100%;
+  overflow: scroll;
+ 
 }

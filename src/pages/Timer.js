@@ -120,9 +120,12 @@ export default function Timer() {
     const handleDelete = () => {
         setTimes([])
         setResults('')
+        setSingle('')
     }
 
     const [results, setResults] = useState('')
+    const [single, setSingle] = useState('')
+
  
     const fun = async () => {
         const avg = (average / 10).toFixed(0);
@@ -133,13 +136,31 @@ export default function Timer() {
         });
         const json = await res.json();
         setResults(json);
-        console.log(results)
     }
+
+    const fun_two = async () => {
+        const sin = (time/10).toFixed(0);
+
+        const res = await fetch('/api/singleranks', {
+            method: 'POST',
+            body: JSON.stringify({ sin: sin }),
+            headers: { 'Content-Type': 'application/json' },
+        });
+        const json = await res.json();
+        setSingle(json);
+        
+    }
+
     useEffect(() => {
         if (times.length > 4) {
             fun()
         }
     }, [average])
+
+
+    useEffect(() => {
+        if(times.length > 0) fun_two()
+    },[times])
 
     return (
         <div className="timer">
@@ -150,13 +171,15 @@ export default function Timer() {
                 </div>
                 <div className="right">
                     <div className="btnstack">
-                        <h3 className="delete-times" onClick={handleDelete}>Delete times</h3>
+                        <button className="delete-times" onClick={handleDelete}>Delete times</button>
                     </div>
                     <div className="stats">
                         <h1>Statistics</h1>
                         <p>Ao5: {Math.floor((average % 60000) / 1000)}.{Math.floor((average % 1000) / 10)}</p>
                         <p>Best: {Math.floor((best % 60000) / 1000)}.{Math.floor((best % 1000) / 10)}</p>
                         {results !== '' ? <p>World Avg rank position: {results[0].position}</p> : <p>World Avg Rank position: DNF</p>}
+                        {single !== '' ? <p>World Single rank position:{single[0].singlepos} </p> : <p>World Single Rank position: DNF</p>}
+
                     </div>
 
                 </div>

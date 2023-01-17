@@ -17,6 +17,8 @@ import Login  from './pages/Login';
 import Signup  from './pages/Signup';
 import ErrorPage from './pages/ErrorPage';
 import Database from './pages/Database';
+import DatabaseLayout from './layouts/DatabaseLayout';
+import Winable from './pages/Winable';
 
 
 
@@ -27,7 +29,11 @@ const router = createBrowserRouter(
       <Route path='timer' element={<Timer />} />
       <Route path='login' element={<Login />} />
       <Route path='sign-up' element={<Signup />} />
-      <Route path='database' element={<Database />} />
+      
+      <Route path='database' element={<DatabaseLayout />}>
+        <Route path='wcaid' element={<Database />} />
+        <Route path='winable' element={<Winable />} />
+      </Route>
 
       <Route path='*' element={<ErrorPage />} />
     </Route>

@@ -9,7 +9,7 @@ export default function () {
                 <NavLink to='/timer'>Timer</NavLink>
                 <NavLink to='/login'>Login</NavLink>
                 <NavLink to='/sign-up'>Sign up</NavLink>
-                <NavLink to='/database'>Data Base</NavLink>
+                <NavLink to='/database'>Stats</NavLink>
 
             </nav>
         </header>
